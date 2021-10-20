@@ -1,7 +1,7 @@
 import inspect
 
 
-def proxy_function(subfunc, superfunc, mapping, /, *args, **kwargs):
+def function_proxy(subfunc, superfunc, mapping, /, *args, **kwargs):
     """
     The logic is:
     We want every call to superfunction pass through a subfunction with *args, **kwargs being arguments to
