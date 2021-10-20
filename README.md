@@ -5,7 +5,7 @@ Functional subclassing? Don't know what to call it, but have a peek:
 
 An easy example:
 ```
-from proxy_function import proxy_function
+from function_proxy import function_proxy
 ```
 Suppose, we have a super function, which does something very clever and complicated with given arguments:
 ```
@@ -23,11 +23,11 @@ How do we do it? That's how:
 ```
 superfunc_args = (15, 18, 22, 48, 95)
 superfunc_kwargs = dict(something='something else', lotta='strange arguments')
-args, kwargs = proxy_function(subfunc, superfunc, None, *superfunc_args, **superfunc_kwargs)
+args, kwargs = function_proxy(subfunc, superfunc, None, *superfunc_args, **superfunc_kwargs)
 ```
 Ignore ```None``` for a sec.
 What happened? We put both ```subfunc``` and ```superfunc``` and provided arguments we would've used for a ```superfunc``` call.
-The ```proxy_function``` returned a set of correct arguments for the ```subfunc``` based on both function's signatures.
+The ```function_proxy``` returned a set of correct arguments for the ```subfunc``` based on both function's signatures.
 
 Which means:
 ```
@@ -46,7 +46,7 @@ def subfunc(y, divide_by, x):  # swap around the arguments again!!! NO MERCY, NO
 ```
 And call it again:
 ```
-args, kwargs = proxy_function(subfunc, superfunc, {"divide_by": 4}, *superfunc_args, **superfunc_kwargs)
+args, kwargs = function_proxy(subfunc, superfunc, {"divide_by": 4}, *superfunc_args, **superfunc_kwargs)
 result = subfunc(*args, **kwargs)
 print(result)
 assert result == (5, 4)  # IS GOOD AGAIN
